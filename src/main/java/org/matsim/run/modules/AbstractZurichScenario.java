@@ -19,20 +19,22 @@ import com.google.inject.Provides;
 
 public abstract class AbstractZurichScenario extends AbstractModule {
 		public static final String[] DEFAULT_ACTIVITIES = {
-				"pt","tr" ,"work", "leisure", "education_kiga", "education_primary", "education_secondary", "education_higher", "shop", "outside", "home", "quarantine_home","other","service"
+				"home","work","outside","pt interaction","other","shop","leisure","education","quarantine_home"
+//				"pt","tr" ,"work", "leisure", "education_kiga", "education_primary", "education_secondary", "education_higher", "shop", "outside", "home", "quarantine_home","other","service"
 		};
 
 		public static void addParams(EpisimConfigGroup episimConfig) {
 			int spaces = 20;
 			//contact intensities
-			episimConfig.getOrAddContainerParams("pt", "tr").setContactIntensity(10.0).setSpacesPerFacility(spaces);
+			episimConfig.getOrAddContainerParams("pt interaction", "tr").setContactIntensity(10.0).setSpacesPerFacility(spaces);
 			episimConfig.getOrAddContainerParams("work").setContactIntensity(1.47).setSpacesPerFacility(spaces);
-			episimConfig.getOrAddContainerParams("service").setContactIntensity(1.47).setSpacesPerFacility(spaces);
+//			episimConfig.getOrAddContainerParams("service").setContactIntensity(1.47).setSpacesPerFacility(spaces);
 			episimConfig.getOrAddContainerParams("leisure").setContactIntensity(9.24).setSpacesPerFacility(spaces);
-			episimConfig.getOrAddContainerParams("education_kiga").setContactIntensity(11.0).setSpacesPerFacility(spaces);
-			episimConfig.getOrAddContainerParams("education_primary").setContactIntensity(11.0).setSpacesPerFacility(spaces);
-			episimConfig.getOrAddContainerParams("education_secondary").setContactIntensity(11.0).setSpacesPerFacility(spaces);
-			episimConfig.getOrAddContainerParams("education_higher").setContactIntensity(5.5).setSpacesPerFacility(spaces);
+			episimConfig.getOrAddContainerParams("education").setContactIntensity(11.0).setSpacesPerFacility(spaces);
+//			episimConfig.getOrAddContainerParams("education_kiga").setContactIntensity(11.0).setSpacesPerFacility(spaces);
+//			episimConfig.getOrAddContainerParams("education_primary").setContactIntensity(11.0).setSpacesPerFacility(spaces);
+//			episimConfig.getOrAddContainerParams("education_secondary").setContactIntensity(11.0).setSpacesPerFacility(spaces);
+//			episimConfig.getOrAddContainerParams("education_higher").setContactIntensity(5.5).setSpacesPerFacility(spaces);
 			episimConfig.getOrAddContainerParams("shop").setContactIntensity(0.88).setSpacesPerFacility(spaces);
 			episimConfig.getOrAddContainerParams("outside").setContactIntensity(0.2).setSpacesPerFacility(spaces);
 			episimConfig.getOrAddContainerParams("home").setContactIntensity(0.8).setSpacesPerFacility(1);
