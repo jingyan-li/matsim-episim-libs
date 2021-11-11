@@ -131,7 +131,7 @@ public class ZurichScenarioPop100_2021 extends AbstractZurichScenario{
 		 */
 
 		public ZurichScenarioPop100_2021() {
-			this(25, DiseaseImport.no, Restrictions.yes, Masks.yes, Tracing.no, Snapshot.no, AgeDependentInfectionModelWithSeasonality.class, 0, VaccinationByAge.class,true);
+			this(100, DiseaseImport.no, Restrictions.yes, Masks.yes, Tracing.no, Snapshot.no, AgeDependentInfectionModelWithSeasonality.class, 0, VaccinationByAge.class,true);
 		}
 
 		public ZurichScenarioPop100_2021( int sample, DiseaseImport diseaseImport, Restrictions restrictions, Masks masks, Tracing tracing, Snapshot snapshot,
@@ -179,12 +179,7 @@ public class ZurichScenarioPop100_2021 extends AbstractZurichScenario{
 				String date = e.getKey();
 				Double ciCorrection = e.getValue();
 				restrictions.restrict(date, Restriction.ofCiCorrection(ciCorrection), DEFAULT_ACTIVITIES);
-//			restrictions.restrict(date, Restriction.ofCiCorrection(ciCorrection), "pt");
-//			restrictions.restrict(date, Restriction.ofCiCorrection(ciCorrection), "tr");
-//			restrictions.restrict(date, Restriction.ofCiCorrection(ciCorrection), "work");
-//			restrictions.restrict(date, Restriction.ofCiCorrection(ciCorrection), "shop");
-//			restrictions.restrict(date, Restriction.ofCiCorrection(ciCorrection), "leisure");
-//			restrictions.restrict(date, Restriction.ofCiCorrection(ciCorrection), "other");
+
 			}
 
 			restrictions.restrict(LocalDate.parse("2020-03-16") , 0.1, "education_secondary", "education_higher","education_primary", "education_kiga")
