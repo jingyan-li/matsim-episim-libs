@@ -39,8 +39,6 @@ public abstract class AbstractZurichScenario extends AbstractModule {
 			episimConfig.getOrAddContainerParams("other").setContactIntensity(1.0).setSpacesPerFacility(spaces);
 			episimConfig.getOrAddContainerParams("quarantine_home").setContactIntensity(1.0).setSpacesPerFacility(1);
 		}
-
-
 		/**
 		 * Adds base progression config to the given builder.
 		 */
@@ -73,9 +71,6 @@ public abstract class AbstractZurichScenario extends AbstractModule {
 					.from(EpisimPerson.DiseaseStatus.seriouslySickAfterCritical,
 							to(EpisimPerson.DiseaseStatus.recovered, Transition.logNormalWithMedianAndStd(7., 7.)))
 					;
-
-			// yyyy Quellen für alle Aussagen oben??  kai, aug'20
-
 		}
 
 		/**
@@ -88,7 +83,6 @@ public abstract class AbstractZurichScenario extends AbstractModule {
 		 * Creates a config with the default settings for all ETH scenarios.
 		 */
 		protected static Config getBaseConfig() {
-
 			Config config = ConfigUtils.createConfig(new EpisimConfigGroup());
 			EpisimConfigGroup episimConfig = ConfigUtils.addOrGetModule(config, EpisimConfigGroup.class);
 			episimConfig.setFacilitiesHandling(EpisimConfigGroup.FacilitiesHandling.bln);
