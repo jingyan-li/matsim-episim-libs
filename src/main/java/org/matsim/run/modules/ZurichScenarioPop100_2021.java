@@ -35,7 +35,7 @@ public class ZurichScenarioPop100_2021 extends AbstractZurichScenario{
 	/**
 	 * Path pointing to the input folder. Can be configured at runtime with EPISIM_INPUT variable.
 	 */
-	public static Path INPUT = EpisimUtils.resolveInputPath("E:/ETH_Workplace/ABMT/project/data");
+	public static Path INPUT = EpisimUtils.resolveInputPath("/cluster/work/ivt_vpl/jingyli/episim/data");
 	private final int importOffset;
 	public static enum DiseaseImport {yes, no}
 	public static enum Restrictions {yes, no}
