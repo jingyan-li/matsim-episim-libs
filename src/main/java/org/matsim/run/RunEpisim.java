@@ -38,6 +38,7 @@ import org.matsim.core.controler.OutputDirectoryLogging;
 import org.matsim.episim.EpisimModule;
 import org.matsim.episim.EpisimRunner;
 import org.matsim.run.modules.OpenBerlinScenario;
+import org.matsim.run.modules.ZurichScenarioPop100_2021;
 import picocli.CommandLine;
 
 import java.lang.reflect.Constructor;
@@ -179,7 +180,6 @@ public final class RunEpisim implements Callable<Integer> {
 	 */
 	public static List<Module> resolveModules(List<String> modules) throws ReflectiveOperationException {
 		List<Module> result = new ArrayList<>();
-
 		for (String name : modules) {
 			// Build module path
 			if (!name.contains(".")) name = "org.matsim.run.modules." + name;
@@ -188,6 +188,7 @@ public final class RunEpisim implements Callable<Integer> {
 			Constructor<?> constructor = clazz.getDeclaredConstructor();
 			constructor.trySetAccessible();
 			Module module = (Module) constructor.newInstance();
+
 			result.add(module);
 		}
 

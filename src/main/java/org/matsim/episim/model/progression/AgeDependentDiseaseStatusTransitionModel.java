@@ -42,6 +42,7 @@ public class AgeDependentDiseaseStatusTransitionModel extends DefaultDiseaseStat
 	}
 
 
+
 	@Override
 	protected double getProbaOfTransitioningToShowingSymptoms (EpisimPerson person) {
 

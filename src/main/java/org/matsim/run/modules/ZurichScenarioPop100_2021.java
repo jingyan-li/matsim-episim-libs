@@ -21,6 +21,9 @@ import org.matsim.episim.TracingConfigGroup;
 import org.matsim.episim.EpisimUtils.Extrapolation;
 import org.matsim.episim.TracingConfigGroup.CapacityType;
 import org.matsim.episim.model.*;
+import org.matsim.episim.model.progression.AgeDependentDiseaseStatusTransitionModel;
+import org.matsim.episim.model.progression.DefaultDiseaseStatusTransitionModel;
+import org.matsim.episim.model.progression.DiseaseStatusTransitionModel;
 import org.matsim.episim.policy.FixedPolicy;
 import org.matsim.episim.policy.Restriction;
 import org.matsim.episim.policy.FixedPolicy.ConfigBuilder;
@@ -84,9 +87,12 @@ public class ZurichScenarioPop100_2021 extends AbstractZurichScenario{
 	@Override
 	protected void configure() {
 		bind(ContactModel.class).to(SymmetricContactModel.class).in(Singleton.class);
-		bind(ProgressionModel.class).to(ConfigurableProgressionModel.class).in(Singleton.class);
-		bind(InfectionModel.class).to(infectionModel).in(Singleton.class);
+//		bind(ProgressionModel.class).to(AgeDependentProgressionModel.class).in(Singleton.class);
+//		bind(InfectionModel.class).to(infectionModel).in(Singleton.class);
 		bind(VaccinationModel.class).to(vaccinationModel).in(Singleton.class);
+//		bind(DiseaseStatusTransitionModel.class).to(AgeDependentDiseaseStatusTransitionModel.class).in(Singleton.class);
+		bind(DiseaseStatusTransitionModel.class).to(AgeDependentDiseaseStatusTransitionModel.class).in(Singleton.class);
+		bind(InfectionModel.class).to(AgeDependentInfectionModelWithSeasonality.class).in(Singleton.class);
 	}
 
 
@@ -307,16 +313,16 @@ public class ZurichScenarioPop100_2021 extends AbstractZurichScenario{
 		//We use the method getBaseConfig() in the AbstractZurichScenario to create
 		//an instance of Config that contains ContactIntensity and the progression model prob. dist.
 		Config config = getBaseConfig();
-		config.global().setRandomSeed(5672387461864L);
+		config.global().setRandomSeed(5672387461864L); //todo 10-15 seeds
 
 		EpisimConfigGroup episimConfig = ConfigUtils.addOrGetModule(config, EpisimConfigGroup.class);
 
 		episimConfig.setInputEventsFile(INPUT.resolve("output_events.xml.gz").toString());
 		config.plans().setInputFile(INPUT.resolve("output_plans.xml.gz").toString());
 		episimConfig.setSampleSize(1);
-		episimConfig.setInitialInfections(100);
-		episimConfig.setCalibrationParameter(1.05E-5);
-		episimConfig.setMaxContacts(4);
+		episimConfig.setInitialInfections(100); // todo
+		episimConfig.setCalibrationParameter(1.05E-5); // todo
+		episimConfig.setMaxContacts(4); // todo
 		String startDate = "2020-02-22";
 		episimConfig.setStartDate(startDate);
 		episimConfig.setHospitalFactor(1);

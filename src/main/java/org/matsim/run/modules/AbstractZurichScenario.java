@@ -74,6 +74,9 @@ public abstract class AbstractZurichScenario extends AbstractModule {
 
 					.from(EpisimPerson.DiseaseStatus.seriouslySickAfterCritical,
 							to(EpisimPerson.DiseaseStatus.recovered, Transition.logNormalWithMedianAndStd(7., 7.)))
+
+					.from(EpisimPerson.DiseaseStatus.recovered,
+							to(EpisimPerson.DiseaseStatus.susceptible,Transition.logNormalWithMedianAndStd(360, 15.)))
 					;
 
 			// yyyy Quellen für alle Aussagen oben??  kai, aug'20
