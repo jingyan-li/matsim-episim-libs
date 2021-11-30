@@ -37,8 +37,8 @@ public class ZurichScenarioPop100_2021 extends AbstractZurichScenario{
 
 	/**
 	 * Path pointing to the input folder. Can be configured at runtime with EPISIM_INPUT variable.
-	 */
-	public static Path INPUT = EpisimUtils.resolveInputPath("/cluster/work/ivt_vpl/jingyli/episim/data");
+	 *///cluster/work/ivt_vpl/jingyli/episim/data
+	public static Path INPUT = EpisimUtils.resolveInputPath("E:\\ETH_Workplace\\ABMT\\project\\data");
 	private final int importOffset;
 	public static enum DiseaseImport {yes, no}
 	public static enum Restrictions {yes, no}
@@ -109,7 +109,7 @@ public class ZurichScenarioPop100_2021 extends AbstractZurichScenario{
 			restrictions.restrict(date, Restriction.ofCiCorrection(ciCorrection), DEFAULT_ACTIVITIES);
 
 		}
-		restrictions.restrict(LocalDate.parse("2020-03-16") , 0.1, "education")
+		restrictions.restrict(LocalDate.parse("2020-03-16") , 0.1, "education") //todo: definition of fraction
 				.restrict(LocalDate.parse("2020-03-18") , 0.72, "work")
 				.restrict(LocalDate.parse("2020-03-18") , 0.59, "shop","leisure","other")
 				.restrict(LocalDate.parse("2020-03-25") , 0.53, "work")
@@ -319,10 +319,10 @@ public class ZurichScenarioPop100_2021 extends AbstractZurichScenario{
 
 		episimConfig.setInputEventsFile(INPUT.resolve("output_events.xml.gz").toString());
 		config.plans().setInputFile(INPUT.resolve("output_plans.xml.gz").toString());
-		episimConfig.setSampleSize(1);
-		episimConfig.setInitialInfections(100); // todo
+		episimConfig.setSampleSize(1); // [0, 1]
+		episimConfig.setInitialInfections(100); // todo unit: number of people
 		episimConfig.setCalibrationParameter(1.05E-5); // todo
-		episimConfig.setMaxContacts(4); // todo
+		episimConfig.setMaxContacts(4); // maximum number of people one can infect
 		String startDate = "2020-02-22";
 		episimConfig.setStartDate(startDate);
 		episimConfig.setHospitalFactor(1);

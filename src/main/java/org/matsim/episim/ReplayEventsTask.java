@@ -87,11 +87,15 @@ final public class ReplayEventsTask implements Runnable {
 				PersonEntersVehicleEvent peve = (PersonEntersVehicleEvent) e;
 				if (handlesVehicle(peve.getVehicleId()))
 					trajectoryHandler.handleEvent(peve);
-			} else if (e instanceof PersonLeavesVehicleEvent){
+			}else if (e instanceof PersonDepartureEvent){
+//				System.out.println("PERSON DEPARTURE EVENT");
+			}
+			else if (e instanceof PersonLeavesVehicleEvent){
 				PersonLeavesVehicleEvent plve = (PersonLeavesVehicleEvent) e;
 				if (handlesVehicle(plve.getVehicleId()))
 					trajectoryHandler.handleEvent(plve);
-			} else continue;
+			}
+			else continue;
 		}
 
 		trajectoryHandler.reportCpuTime("finished", taskId);
